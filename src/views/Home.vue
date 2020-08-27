@@ -2,13 +2,10 @@
   <div class="home">
     <h1>{{ message }}</h1>
     <h2>{{ message2 }}</h2>
-    <p>{{ tags }}</p>
     <tags-input element-id="tags"
     v-model="selectedTags"
     :existing-tags="[
-        { key: 'web-development', value: 'Web Development' },
-        { key: 'php', value: 'PHP' },
-        { key: 'javascript', value: 'JavaScript' },
+        { key: tags, value: tagsinput}
     ]"
     :typeahead="true"></tags-input>
   </div>
@@ -27,12 +24,13 @@ export default {
       message:
         "Welcome to Which Wine! Making wine selection simple by matching you with wine varietals that suite your current taste preferences. ",
       message2:
-        "Just select your taste preferences and we will select wine varietals that match",
+        "Search your current taste preferences and we will select wine varietals for you that match",
       tags: [],
     };
   },
   created: function () {
     this.indexTags();
+    this.selectedTags();
   },
   methods: {
     indexTags: function () {
@@ -41,6 +39,23 @@ export default {
         console.log(response.data);
         this.tags = response.data;
       });
+    },
+    selectedTags: function () {
+      this.selectedTags = [{ key: "selected", value: "selected:" }];
+    },
+    submit: function () {
+      var params = {
+        tags: this.selectTags,
+        wines: this.wineTags,
+      };
+      axios
+        .post("/api/wines", params)
+        .then((response) => {
+          this.$router.push("/wines");
+        })
+        .cath((error) => {
+          this.errors = error.response.data.errors;
+        });
     },
   },
 };
