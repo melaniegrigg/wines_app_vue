@@ -2,12 +2,12 @@
   <div class="home">
     <h1>{{ message }}</h1>
     <h2>{{ message2 }}</h2>
-    <tags-input element-id="tags"
+    <voerro-tags-input element-id="tags"
     v-model="selectedTags"
-    :existing-tags="[
-        { key: tags, value: tagsinput}
+    :index="[
+        { key: tags, value: selectedTags}
     ]"
-    :typeahead="true"></tags-input>
+    :typeahead="true"></voerro-tags-input>
   </div>
 </template>
 
@@ -19,13 +19,20 @@ import axios from "axios";
 import VoerroTagsInput from "@voerro/vue-tagsinput";
 
 export default {
+  components: {
+    VoerroTagsInput,
+  },
+  props: {
+    typehead: { type: Boolean, default: false },
+  },
   data: function () {
     return {
       message:
-        "Welcome to Which Wine! Making wine selection simple by matching you with wine varietals that suite your current taste preferences. ",
+        "Welcome to Which Wine! Making wine selection simple by matching your tastes with wine varietals. ",
       message2:
         "Search your current taste preferences and we will select wine varietals for you that match",
       tags: [],
+      selectedTags: [],
     };
   },
   created: function () {
@@ -41,7 +48,7 @@ export default {
       });
     },
     selectedTags: function () {
-      this.selectedTags = [{ key: "selected", value: "selected:" }];
+      this.selectedTags = [{ key: "tags", value: this.selectedTags }];
     },
     submit: function () {
       var params = {
