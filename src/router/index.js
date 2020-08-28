@@ -5,7 +5,6 @@ import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import Ratings from "../views/Ratings.vue";
-import VoerroTagsInput from '@voerro/vue-tagsinput';
 
 Vue.use(VueRouter)
 
