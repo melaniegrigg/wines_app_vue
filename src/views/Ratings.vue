@@ -12,10 +12,6 @@
         <input type="text" class="form-control" v-model="vintner">
       </div>
       <div class="form-group">
-        <label>Varietal</label>
-        <input type="text" class="form-control" v-model="varietal">
-      </div>
-      <div class="form-group">
         <label>Rating</label>
         <input type="text" class="form-control" v-model="rating">
       </div>
@@ -39,10 +35,9 @@ export default {
     return {
       message: "View, rate and edit your saved wines here.",
       ratings: [],
-      vintner: "",
-      varietal: "",
       rating: "",
       notes: "",
+      vintner: "",
       errors: [],
     };
   },
@@ -59,8 +54,7 @@ export default {
     },
     submit: function () {
       var params = {
-        vinter: this.vinter,
-        varietal: this.varietal,
+        vinter: this.vintner,
         rating: this.rating,
         notes: this.notes,
       };
