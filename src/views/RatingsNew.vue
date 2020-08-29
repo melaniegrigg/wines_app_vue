@@ -21,26 +21,8 @@
       </div>
       <input type="submit" class="btn btn-primary" value="Submit">
     </form>
-
-    <div class="card text-center">
-      <div class="card-header">
-        A Rating
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">Ratings</h5>
-        <p class="card-text"> Notes </p>
-        <a href="#" class="btn btn-primary">Edit Rating</a>
-      </div>
-      <div class="card-footer text-muted">
-          2 days ago
-      </div>
-    </div>
   </div>
 </template>
-
-<style>
-</style>
-
 <script>
 import axios from "axios";
 
