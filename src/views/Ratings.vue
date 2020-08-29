@@ -68,7 +68,7 @@ export default {
     },
     submit: function () {
       var params = {
-        vinter: this.vintner,
+        vintner: this.vintner,
         rating: this.rating,
         notes: this.notes,
       };

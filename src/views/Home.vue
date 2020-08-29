@@ -2,8 +2,10 @@
   <div class="home">
     <h1>{{ message }}</h1>
     <h2>{{ message2 }}</h2>
-    <button v-on:click="showWine" v-for="tag in tags" > {{tag.tag}}
-    </li></button>
+    <p v-for="tag in tags" > {{tag.tag}}</p>
+    </button>
+    <button v-on:click="selectTag">Which Wine?
+    </button>
   </div>
 </template>
 
@@ -16,8 +18,7 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      message:
-        "Welcome to Which Wine! Making wine selection simple by matching your tastes with wine varietals. ",
+      message: "Welcome to Which Wine!",
       message2:
         "Search your current taste preferences and we will select wine varietals for you that match",
       tags: [],
@@ -35,11 +36,15 @@ export default {
         this.tags = response.data;
       });
     },
-    showWine: function () {
-      console.log("showing wines");
-      axios.get("/api/wines").then((response) => {
+    selectTag: function () {
+      console.log("sending tags to wine_tags");
+
+      var params = {
+        tag: "this tag is selected",
+      };
+      axios.get("/api/wine_tags", params).then((response) => {
         console.log(response.data);
-        this.wines = response.data;
+        this.wine_tags.push(response.data);
       });
     },
   },
