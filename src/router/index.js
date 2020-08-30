@@ -7,6 +7,7 @@ import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import Ratings from "../views/Ratings.vue";
+import WineShow from '../views/WineShow.vue';
 
 Vue.use(VueRouter)
 
@@ -35,6 +36,11 @@ const routes = [
     path: "/logout",
     name: "Logout",
     component: Logout
+  },
+  {
+    path: "/wines",
+    name: "WineShow",
+    component: WineShow
   },
 ]
 const router = new VueRouter({

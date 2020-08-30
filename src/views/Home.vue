@@ -7,6 +7,7 @@
         <input type="checkbox" v-bind:id="tag.id" v-model="selectedTags" v-bind:value="tag.id">
         <label v-bind:for="tag.id"> {{ tag.tag }}</label><br>
       </div>
+      <button v-on:click="getWines" type="submit" class="btn btn-primary" id="sendWinesButton">Which Wine?</button>
     </div>
   </div>
 </template>
@@ -24,7 +25,7 @@ export default {
       message2:
         "Search your current taste preferences and we will select wine varietals for you that match",
       tags: [],
-      selectedTags: [3],
+      selectedTags: [],
       wines: [],
     };
   },
@@ -39,17 +40,22 @@ export default {
         this.tags = response.data;
       });
     },
-    submit: function () {
+    getWines: function () {
       var params = {
-        tag: this.tags,
+        tags: this.selectedTags,
       };
+      console.log(this.selectedTags);
       axios
-        .post("/api/wine_tags", params)
-        .then((response) => {
-          this.$router.push("/wine_tags");
+        .get("/api/wines", {
+          params: {
+            tags: this.selectedTags,
+          },
         })
-        .catch((error) => {
-          this.errors = error.response.data.errors;
+        .then(function (response) {
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
         });
     },
   },
