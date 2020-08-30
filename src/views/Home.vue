@@ -1,11 +1,13 @@
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
-    <h2>{{ message2 }}</h2>
-    <p v-for="tag in tags" > {{tag.tag}}</p>
-    </button>
-    <button v-on:click="selectTag">Which Wine?
-    </button>
+    <div class="container">
+      {{ selectedTags }}
+      <div v-for="tag in tags">
+        <input type="checkbox" v-bind:id="tag.id" v-model="selectedTags" v-bind:value="tag.id">
+        <label v-bind:for="tag.id"> {{ tag.tag }}</label><br>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -22,6 +24,7 @@ export default {
       message2:
         "Search your current taste preferences and we will select wine varietals for you that match",
       tags: [],
+      selectedTags: [3],
       wines: [],
     };
   },
@@ -36,16 +39,18 @@ export default {
         this.tags = response.data;
       });
     },
-    selectTag: function () {
-      console.log("sending tags to wine_tags");
-
+    submit: function () {
       var params = {
-        tag: "this tag is selected",
+        tag: this.tags,
       };
-      axios.get("/api/wine_tags", params).then((response) => {
-        console.log(response.data);
-        this.wine_tags.push(response.data);
-      });
+      axios
+        .post("/api/wine_tags", params)
+        .then((response) => {
+          this.$router.push("/wine_tags");
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
     },
   },
 };
