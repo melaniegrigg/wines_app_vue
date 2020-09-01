@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div  class="home">
     <h1>{{ message }}</h1>
     <div class="container">
       {{ selectedTags }}
@@ -7,7 +7,12 @@
         <input type="checkbox" v-bind:id="tag.id" v-model="selectedTags" v-bind:value="tag.id">
         <label v-bind:for="tag.id"> {{ tag.tag }}</label><br>
       </div>
-      <button v-on:click="getWines" type="submit" class="btn btn-primary" id="sendWinesButton">Which Wine?</button>
+      <button v-on:click="getWines" type="submit" class="btn btn-primary" id="sendWinesButton">Which Wine? </button>
+      <div v-for="wine in wines">
+      <h1 v-bind:varietal="wine.varietal" v-bind:color="wine.color">
+        <h1> {{wine.varietal}}</h1>
+        </h1>
+      </div>
     </div>
   </div>
 </template>
@@ -51,10 +56,11 @@ export default {
             tags: this.selectedTags,
           },
         })
-        .then(function (response) {
+        .then((response) => {
           console.log(response.data);
+          this.wines = response.data;
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.log(error);
         });
     },
