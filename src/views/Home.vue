@@ -2,10 +2,13 @@
   <div  class="home">
     <h1>{{ message }}</h1>
     <div class="container">
+      <div class="row">
       {{ selectedTags }}
-      <div v-for="tag in tags">
+      <div class="col-sm" v-for="tag in tags">
         <input type="checkbox" v-bind:id="tag.id" v-model="selectedTags" v-bind:value="tag.id">
         <label v-bind:for="tag.id"> {{ tag.tag }}</label><br>
+      </div>
+        </div>
       </div>
       <button v-on:click="getWines" type="submit" class="btn btn-primary" id="sendWinesButton">Which Wine? </button>
       <h1> Wine Selection: </h1>

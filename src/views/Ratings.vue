@@ -1,7 +1,6 @@
 <template>
   <div class="ratings">
     <h1>{{ message }}</h1>
-    <p>{{ ratings }}</p>
     <form v-on:submit.prevent="submit()">
       <h1>Create a new rating</h1>
       <ul>
@@ -24,15 +23,14 @@
 
     <div class="card text-center">
       <div class="card-header">
-        A Rating
+        Wines You've Rated
       </div>
       <div class="card-body">
         <h5 class="card-title">Ratings</h5>
-        <p class="card-text"> Notes </p>
+        <p class="card-text"> {{ratings}}</p>
         <a href="#" class="btn btn-primary">Edit Rating</a>
       </div>
       <div class="card-footer text-muted">
-          2 days ago
       </div>
     </div>
   </div>
@@ -52,6 +50,7 @@ export default {
       rating: "",
       notes: "",
       vintner: "",
+      userWine: "",
       errors: [],
     };
   },
@@ -71,6 +70,7 @@ export default {
         vintner: this.vintner,
         rating: this.rating,
         notes: this.notes,
+        id: this.current_user,
       };
       axios
         .post("/api/ratings", params)
