@@ -8,11 +8,7 @@
         <label v-bind:for="tag.id"> {{ tag.tag }}</label><br>
       </div>
       <button v-on:click="getWines" type="submit" class="btn btn-primary" id="sendWinesButton">Which Wine? </button>
-      <div v-for="wine in wines">
-      <h1 v-bind:varietal="wine.varietal" v-bind:color="wine.color">
-        <h1> {{wine.varietal}}</h1>
-        </h1>
-      </div>
+      <div v-for="wine in wines"> {{wine}}</div>
     </div>
   </div>
 </template>
