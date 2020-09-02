@@ -28,7 +28,6 @@
       <div class="card-body">
         <h5 class="card-title">Ratings</h5>
         <p class="card-text"> {{ratings}}</p>
-        <a href="#" class="btn btn-primary">Edit Rating</a>
       </div>
       <div class="card-footer text-muted">
       </div>
@@ -50,7 +49,6 @@ export default {
       rating: "",
       notes: "",
       vintner: "",
-      userWine: "",
       errors: [],
     };
   },
@@ -70,7 +68,6 @@ export default {
         vintner: this.vintner,
         rating: this.rating,
         notes: this.notes,
-        id: this.current_user,
       };
       axios
         .post("/api/ratings", params)

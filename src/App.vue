@@ -11,6 +11,8 @@
         <ul>
           <li><a href="/" class="active">Which Wine?</a></li>
           <li><a href="/Ratings">Ratings</a></li>
+          <li v-if="!isLoggedIn()"><a href="/LogIn">Login</a></li>
+          <li v-if="isLoggedIn()"><a href="/LogOut">Logout</a></li>
           <li><a href="/Signup">Signup</a></li>
         </ul>
       </nav>
@@ -21,13 +23,13 @@
       <footer id="footer">
         <section>
           <ul class="icons">
-            <li><a href="#" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a></li>
+            <li><a href="https://twitter.com/MelanieGrigger" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a></li>
             <li><a href="#" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li>
             <li><a href="#" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
+            <li><a href="https://github.com/melaniegrigg" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
           </ul>
         </section>
-        <p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        <p class="copyright">&copy; Melanie Grigger: Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
       </footer>
 
         <!-- </div>
