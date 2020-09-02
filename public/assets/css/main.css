@@ -155,6 +155,10 @@ input, select, textarea {
 
 		}
 
+		.hero {
+			background-image: url(wine.jpeg);
+		}
+
 	a {
 		-moz-transition: color 0.2s ease, border-bottom 0.2s ease;
 		-webkit-transition: color 0.2s ease, border-bottom 0.2s ease;
@@ -3074,6 +3078,8 @@ input, select, textarea {
 	#header {
 		padding: 5em 5em 1em 5em ;
 		text-align: center;
+		/* background-image: url(images/wine.jpg); */
+	}
 	}
 
 		#header h1 {
@@ -3222,6 +3228,7 @@ input, select, textarea {
 		max-width: calc(100% - 4em);
 		padding: 1em;
 		background-color: #f7f7f7;
+		opacity: 30%;
 		border-top-left-radius: 0.25em;
 		border-top-right-radius: 0.25em;
 		cursor: default;
