@@ -30,6 +30,7 @@
         <p> {{ratings}}</p>
       </div>
     </div>
+    <p><button v-on:click="deleteRating()">Delete Rating</button></p>
   </div>
 </template>
 
@@ -76,6 +77,9 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+    },
+    deleteRating: function () {
+      console.log("deleting the rating");
     },
   },
 };
