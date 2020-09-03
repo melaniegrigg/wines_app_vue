@@ -25,11 +25,9 @@
       <div class="card-header">
         Wines You've Rated
       </div>
-      <div class="card-body">
-        <h5 class="card-title">Ratings</h5>
-        <p class="card-text"> {{ratings}}</p>
-      </div>
-      <div class="card-footer text-muted">
+      <div class="ratings">
+        <h1>Ratings</h1>
+        <p> {{ratings}}</p>
       </div>
     </div>
   </div>

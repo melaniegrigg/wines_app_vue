@@ -3,15 +3,15 @@
     <h1>{{ message }}</h1>
     <div class="container-fluid">
       <div class="row">
-      <!-- <div class="col-sm">
+      <div class="col-sm">
       <div v-for="tag in tags">
         <input type="checkbox" v-bind:id="tag.id" v-model="selectedTags" v-bind:value="tag.id">
         <label v-bind:for="tag.id"> {{ tag.tag }}</label><br>
       </div>
-      </div> -->
+      <!-- </div>
       <select v-model='selectedTags'>
         <option v-for='tag in tags' v-bind:for='tag.id'>{{ tag.tag }}</option>
-      </select>
+      </select> -->
         </div>
       </div>
       <button v-on:click="getWines" type="submit" class="btn btn-primary" id="sendWinesButton">Which Wine? </button>
