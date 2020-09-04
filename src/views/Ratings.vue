@@ -21,17 +21,17 @@
       <input type="submit" class="btn btn-primary" value="Submit">
     </form>
 
-    <div class="card text-center">
-      <div class="card-header">
-        Wines You've Rated
-      </div>
-      <div class="ratings">
-        <h1>Ratings</h1>
-        <p> {{ratings}}</p>
+    <div class="ratings">
+      <h1>Wines You've Rated</h1>
+      <div v-for="rating in ratings" class="ratings">
+        <h1>Vintner: {{rating.vintner}}</h1>
+        <h1>Rating: {{rating.rating}}</h1>
+        <h1>Notes: {{rating.notes}}</h1>
+        <a v-bind:href="`/ratings/edit${rating.id}/edit`">Edit this rating</a>
+        <button v-on:click="deleteRating()">Delete Rating</button>
       </div>
     </div>
-    <p><button v-on:click="deleteRating()">Delete Rating</button></p>
-  </div>
+    </div>
 </template>
 
 <style>
@@ -80,6 +80,10 @@ export default {
     },
     deleteRating: function () {
       console.log("deleting the rating");
+      axios.get(`/api/ratings/${this.$route.params.id}`).then((response) => {
+        console.log(response.data);
+        this.$router.push("/ratings");
+      });
     },
   },
 };
