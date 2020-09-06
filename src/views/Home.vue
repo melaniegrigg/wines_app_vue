@@ -10,20 +10,20 @@
     </div>
     <h2>Fruity</h2>
     <div class="dropdown">
-    <select>
+    <select v-model="fruityId">
       <option v-for='fruity in fruitys' :value='fruity.id'>{{ fruity.tag }}</option>
     </select>
     </div>
     <h2>Earthy</h2>
     <div class="dropdown">
-    <select>
+    <select v-model="earthyId">
       <option v-for='earthy in earthys' :value='earthy.id'>{{ earthy.tag }}</option>
     </select>
     </div>
     <h2>Sweet</h2>
     <div class="dropdown">
-    <select>
-      <option v-for='sweet in sweets' :value='sweet.tag'>{{ sweet.tag }}</option>
+    <select v-model='sweetId'>
+      <option v-for='sweet in sweets' :value='sweet.id'>{{ sweet.tag }}</option>
     </select>
     </div>
     <!-- <section id="first" class="main special">
@@ -52,6 +52,9 @@ export default {
         "Select one tase or smell preference from each menu below and get matched with your personalized wine varietals instantly!",
       tags: [],
       funkyId: "",
+      fruityId: "",
+      earthyId: "",
+      sweetId: "",
       funkys: [],
       fruitys: [],
       earthys: [],
@@ -64,7 +67,7 @@ export default {
   //   this.indexTags1();
   // },
   created: function () {
-    this.indexSweets();
+    this.indexTags();
   },
   methods: {
     // indexTags: function () {
@@ -95,7 +98,7 @@ export default {
         this.earthys = response.data;
       });
     },
-    indexSweets: function () {
+    indexTags: function () {
       console.log("indexing sweetTags");
       axios.get("/api/tags").then((response) => {
         console.log(response.data);
@@ -107,13 +110,13 @@ export default {
     },
     getWines: function () {
       var params = {
-        tags: this.selectedTags,
+        tags: [this.funkyId, this.fruityId, this.earthyId, this.sweetId],
       };
       console.log(this.funkyId);
       axios
         .get("/api/wines", {
           params: {
-            tags: this.selectedTags,
+            tags: [this.funkyId, this.fruityId, this.earthyId, this.sweetId],
           },
         })
         .then((response) => {
