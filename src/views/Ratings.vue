@@ -27,7 +27,7 @@
         <h3>Vintner: {{rating.vintner}}</h3>
         <h3>Rating: {{rating.rating}}</h3>
         <h3>Notes: {{rating.notes}}</h3>
-        <button v-bind:href="`/ratings/edit${rating.id}/edit`">Edit this rating</button>
+        <button v-bind:href="`/ratings/edit${rating.id}/edit`" v-on:click="updateRating()">Edit this rating</button>
         <button v-on:click="deleteRating()">Delete Rating</button>
       </div>
     </div>
@@ -48,6 +48,7 @@ export default {
       rating: "",
       notes: "",
       vintner: "",
+      currentRating: {},
       errors: [],
     };
   },
@@ -78,7 +79,19 @@ export default {
           this.errors = error.response.data.errors;
         });
     },
-    updateRating: function (rating) {},
+    updateRating: function (rating) {
+      console.log(rating);
+      console.log(this.$route);
+
+      var params = {
+        vintner: this.currentRating.vintner,
+        rating: this.currentRating.rating,
+        notes: this.currentRating.notes,
+      };
+      axios.patch("/api/ratings/").then((response) => {
+        console.log(response.data);
+      });
+    },
     deleteRating: function (rating) {
       console.log(rating);
       axios.delete(`/api/ratings/` + rating.id).then((response) => {

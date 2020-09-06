@@ -1,29 +1,29 @@
 <template>
   <div  class="home">
     <h1>{{ message }}</h1>
-    <h2>{{ message2}}</h2>
+    <h2>{{ message2 }}</h2>
     <h2>Funky</h2>
     <div class="dropdown">
-    <select v-model='funkys'>
+    <select v-model="funkyId">
       <option v-for='funky in funkys' :value='funky.id'>{{ funky.tag }}</option>
     </select>
     </div>
     <h2>Fruity</h2>
     <div class="dropdown">
-    <select v-model='fruitys'>
+    <select>
       <option v-for='fruity in fruitys' :value='fruity.id'>{{ fruity.tag }}</option>
     </select>
     </div>
     <h2>Earthy</h2>
     <div class="dropdown">
-    <select v-model='earthys'>
+    <select>
       <option v-for='earthy in earthys' :value='earthy.id'>{{ earthy.tag }}</option>
     </select>
     </div>
     <h2>Sweet</h2>
     <div class="dropdown">
-    <select v-model='sweets'>
-      <option v-for='sweet in sweets' :value='sweet.id'>{{ sweet.tag }}</option>
+    <select>
+      <option v-for='sweet in sweets' :value='sweet.tag'>{{ sweet.tag }}</option>
     </select>
     </div>
     <!-- <section id="first" class="main special">
@@ -51,6 +51,7 @@ export default {
       message2:
         "Select one tase or smell preference from each menu below and get matched with your personalized wine varietals instantly!",
       tags: [],
+      funkyId: "",
       funkys: [],
       fruitys: [],
       earthys: [],
@@ -63,16 +64,16 @@ export default {
   //   this.indexTags1();
   // },
   created: function () {
-    this.indexTags();
+    this.indexSweets();
   },
   methods: {
-    indexTags: function () {
-      console.log("indexing funkyTags");
-      axios.get("/api/tags").then((response) => {
-        console.log(response.data);
-        this.tags = response.data;
-      });
-    },
+    // indexTags: function () {
+    //   console.log("indexing funkyTags");
+    //   axios.get("/api/tags").then((response) => {
+    //     console.log(response.data);
+    //     this.tags = response.data;
+    //   });
+    // },
     indexFunkys: function () {
       console.log("indexing funkyTags");
       axios.get("/api/tags").then((response) => {
@@ -98,14 +99,17 @@ export default {
       console.log("indexing sweetTags");
       axios.get("/api/tags").then((response) => {
         console.log(response.data);
-        this.sweets = response.data;
+        this.funkys = response.data[0];
+        this.fruitys = response.data[1];
+        this.earthys = response.data[2];
+        this.sweets = response.data[3];
       });
     },
     getWines: function () {
       var params = {
         tags: this.selectedTags,
       };
-      console.log(this.selectedTags);
+      console.log(this.funkyId);
       axios
         .get("/api/wines", {
           params: {
