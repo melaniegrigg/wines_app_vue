@@ -24,10 +24,10 @@
     <div class="ratings">
       <h1>Wines You've Rated</h1>
       <div v-for="rating in ratings" class="ratings">
-        <h1>Vintner: {{rating.vintner}}</h1>
-        <h1>Rating: {{rating.rating}}</h1>
-        <h1>Notes: {{rating.notes}}</h1>
-        <a v-bind:href="`/ratings/edit${rating.id}/edit`">Edit this rating</a>
+        <h3>Vintner: {{rating.vintner}}</h3>
+        <h3>Rating: {{rating.rating}}</h3>
+        <h3>Notes: {{rating.notes}}</h3>
+        <button v-bind:href="`/ratings/edit${rating.id}/edit`">Edit this rating</button>
         <button v-on:click="deleteRating()">Delete Rating</button>
       </div>
     </div>
@@ -51,8 +51,8 @@ export default {
       errors: [],
     };
   },
-  created: function () {
-    this.indexRatings();
+  created: function (rating) {
+    this.indexRatings(rating);
   },
   methods: {
     indexRatings: function () {
@@ -78,11 +78,15 @@ export default {
           this.errors = error.response.data.errors;
         });
     },
-    deleteRating: function () {
-      console.log("deleting the rating");
-      axios.get(`/api/ratings/${this.$route.params.id}`).then((response) => {
+    updateRating: function (rating) {},
+    deleteRating: function (rating) {
+      console.log(rating);
+      axios.delete(`/api/ratings/` + rating.id).then((response) => {
         console.log(response.data);
-        this.$router.push("/ratings");
+        var index = this.ratings.indexOf(rating);
+
+        this.ratings.splice(index, 1);
+        console.log(index);
       });
     },
   },

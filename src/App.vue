@@ -15,7 +15,7 @@
     <!-- Header -->
       <header id="header" class="alt">
         <span class="logo"><img src="https://i0.wp.com/www.eatthis.com/wp-content/uploads/2019/08/wine-and-cheese-board.jpg?fit=1200%2C879&ssl=1" alt="Wine and cheese board" /></span>
-        <h1>Welcome to "Which Wine?"</h1>
+        <h1>Which Wine?</h1>
         <h2 class="logo">Simpifying wine selection</h2>
       </header>
 
@@ -38,17 +38,25 @@
             <div class="spotlight">
               <div class="content">
                 <header class="major">
-                  <h2>Select your taste or smell preferences below and get your personalized wine varietal</h2>
+                  <h2>Select your taste or smell preferences and get your personalized wine varietal</h2>
                 </header>
                 <ul class="actions">
-                  <li>Create an account or log in to save or rate particular wines by Vintner.</li>
+                  <li><a href="/signup">Create an account</a> or<a href="/login"> log in</a> to save or rate particular wines by Vintner.</li>
                 </ul>
               </div>
               <span class="image"><img src="https://i.pinimg.com/originals/b2/c3/76/b2c376a572acc4d1e81dffe555b7b635.jpg" alt="" /></span>
             </div>
           </section>
 
+          <!-- <section id="first" class="main special">
+            <div class
+          </section>
+
+          <section id="second" class="main special">
+          </section> -->
+
       </div>
+      <router-view/>
 
     <!-- Footer -->
       <footer id="footer">
