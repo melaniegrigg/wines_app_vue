@@ -35,7 +35,6 @@
       <button v-on:click="getWines" type="submit" class="btn btn-primary" id="sendWinesButton">Which Wine? </button>
       <h1> Here are your suggested varietals! <br>Choose one to rate: </h1>
       <h2 v-for="wine in wines"><a href="/ratings"> {{wine.varietal}} </a></h2>
-    </section>
   </div>
 </template>
 
