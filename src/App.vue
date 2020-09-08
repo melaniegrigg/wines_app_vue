@@ -14,7 +14,7 @@
 
     <!-- Header -->
       <header id="header" class="alt">
-        <span class="logo"><img src="https://i0.wp.com/www.eatthis.com/wp-content/uploads/2019/08/wine-and-cheese-board.jpg?fit=1200%2C879&ssl=1" alt="Wine and cheese board" /></span>
+        <span class="logo"><img src="https://i0.wp.com/www.eatthis.com/wp-content/uploads/2019/08/wine-and-cheese-board.jpg?fit=1200%2C879&ssl=1" alt="Wine and cheese board" width="500"/></span>
         <h1>Which Wine?</h1>
         <h2 class="logo">Simpifying wine selection</h2>
       </header>

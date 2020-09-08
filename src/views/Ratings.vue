@@ -35,15 +35,15 @@
       </div>
 
       <!-- Modal For Delete/edit actions -->
-    <dialog style="color:pink" id="rating-details">
+    <dialog style="color:#ff66cc" id="rating-details">
       <form method="dialog">
-        <h1 style="color:pink">Rating Info</h1>
-        <p>Vintner: <input style="color:purple" v-model="currentRating.vintner"></p>
-        <p>Rating: <input style="color:purple" v-model="currentRating.rating"></p>
-        <p>Notes: <input style="color:purple" v-model="currentRating.notes"></p>
-        <button v-on:click="updateRating(currentRating)"><h3 style="color:purple">Save</h3></button>
-        <button><h3 style="color:purple">Close</h3></button>
-        <button v-on:click="destroyRating(currentRating)"><h3 style="color:purple">Delete</h3></button>
+        <h1 style="color:#ff66cc">Rating Info</h1>
+        <p>Vintner: <input style="color:#660033" v-model="currentRating.vintner"></p>
+        <p>Rating: <input style="color:#660033" v-model="currentRating.rating"></p>
+        <p>Notes: <input style="color:#660033" v-model="currentRating.notes"></p>
+        <button v-on:click="updateRating(currentRating)"><h3 style="color:#660033">Save</h3></button>
+        <button><h3 style="color:#660033">Close</h3></button>
+        <button v-on:click="destroyRating(currentRating)"><h3 style="color:#660033">Delete</h3></button>
       </form>
     </dialog>
     </div>
@@ -103,7 +103,6 @@ export default {
         notes: rating.notes,
       };
       axios.patch("/api/ratings/" + rating.id, params).then((response) => {
-        console.log(response.data);
         this.currentRating = response.data;
       });
     },

@@ -50,7 +50,7 @@ export default {
     return {
       message: "Welcome to Which Wine!",
       message2:
-        "Select some smell or taste preferences from the menus below and get matched with your personalized wine varietals instantly!",
+        "Select your smell or taste preferences from the menus below and get matched with your personalized wine varietals instantly!",
       tags: [],
       funkyId: "",
       fruityId: "",
