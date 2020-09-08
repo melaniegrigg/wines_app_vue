@@ -1,6 +1,8 @@
 <template>
   <div class="ratings">
     <h1>{{ message }}</h1>
+
+      <!-- New rating-form -->
     <form v-on:submit.prevent="submit()">
       <h1>Create a new rating</h1>
       <ul>
@@ -18,16 +20,21 @@
         <label>Notes</label>
         <input type="text" class="form-control" v-model="newNotes">
       </div>
+      <!-- submit button -->
       <input type="submit" class="btn btn-primary" value="Submit">
     </form>
 
-     <h1>Wines You've Rated</h1>
+    <!-- Index current users ratings-must be logged in -->
+     <h1>Your Cellar Ratings...</h1>
       <div v-for="rating in ratings" class="ratings">
+        <hr>
         <h2>Vintner: {{rating.vintner}}</h2>
-        <h3>Rating: {{rating.rating}}</h3>
-        <h3>Notes: {{rating.notes}}</h3>
-        <button v-on:click="showRating(rating)">Edit/Delete</button>
+        <h4>Rating: {{rating.rating}}</h4>
+        <h4>Notes: {{rating.notes}}</h4>
+        <button v-on:click="showRating(rating)">Edit This Rating</button>
       </div>
+
+      <!-- Modal For Delete/edit actions -->
     <dialog style="color:pink" id="rating-details">
       <form method="dialog">
         <h1 style="color:pink">Rating Info</h1>
@@ -39,17 +46,6 @@
         <button v-on:click="destroyRating(currentRating)"><h3 style="color:purple">Delete</h3></button>
       </form>
     </dialog>
-
-    <!-- <div class="ratings">
-      <h1>Wines You've Rated</h1>
-      <div v-for="rating in ratings" class="ratings">
-        <h2>Vintner: {{rating.vintner}}</h2>
-        <h3>Rating: {{rating.rating}}</h3>
-        <h3>Notes: {{rating.notes}}</h3>
-        <button v-on:click="updateRating(currentRating)">Edit this rating</button>
-        <button v-on:click="deleteRating(currentRating)">Delete Rating</button>
-      </div>
-    </div> -->
     </div>
 </template>
 
@@ -76,9 +72,7 @@ export default {
   },
   methods: {
     indexRatings: function () {
-      console.log("current user's ratings");
       axios.get("/api/ratings").then((response) => {
-        console.log(response.data);
         this.ratings = response.data;
       });
     },
@@ -88,8 +82,6 @@ export default {
         rating: this.newRating,
         notes: this.newNotes,
       };
-
-      console.log(params);
 
       axios
         .post("/api/ratings", params)
@@ -101,13 +93,10 @@ export default {
         });
     },
     showRating: function (rating) {
-      console.log(rating);
       this.currentRating = rating;
       document.querySelector("#rating-details").showModal();
     },
     updateRating: function (rating) {
-      console.log(rating);
-
       var params = {
         vintner: rating.vintner,
         rating: rating.rating,
@@ -119,13 +108,10 @@ export default {
       });
     },
     destroyRating: function (rating) {
-      console.log(rating);
       axios.delete("/api/ratings/" + rating.id).then((response) => {
-        console.log(response.data);
         var index = this.ratings.indexOf(rating);
 
         this.ratings.splice(index, 1);
-        console.log(index);
       });
     },
   },
